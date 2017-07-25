@@ -1,5 +1,5 @@
 source 'https://rubygems.org/'
-ruby '~>2.4.1'
+ruby '~>2.3.3'
 
 gem "httparty_with_cookies"
 gem "rack-handlers"
