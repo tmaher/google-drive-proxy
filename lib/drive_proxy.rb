@@ -17,6 +17,16 @@ class DriveProxy
     @token = csrf_token
   end
 
+  def chase_redirects(url = small_download_url)
+    while url
+      resp = head(url, follow_redirects: false)
+      break if resp.code < 300
+      return url if resp.code < 300
+      url = resp.code >= 300 && resp.code < 400 ? resp.headers.location : nil
+    end
+    url
+  end
+
   def csrf?
     !@token.nil?
   end
