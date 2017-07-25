@@ -4,18 +4,31 @@ require 'httparty_with_cookies'
 class DriveProxy
   include HTTParty_with_cookies
 
-  BASE_URL = "https://drive.google.com/uc?export=download".freeze
+  base_uri "https://drive.google.com"
+
+  def small_download_url
+    "/uc?export=download&id=#{@id}"
+  end
 
   def initialize(object_id)
     @id = object_id
+    @response |= get small_download_url, follow_redirects: true
   end
 
-  def download_url
-    "#{BASE_URL}&id=#{@id}"
+  def csrf?
+    !cookies.nil?
   end
 
-  def some_cookies
-    get(download_url)
-    cookies
+  def csrf_token
+    return nil unless csrf?
+    cookies.each { |k,v| return v if k.start_with?('download_warning') }
+  end
+
+  def data
+    if csrf?
+      "OVER LIMIT - NOT IMPLEMENTED - cookies #{cookies}"
+    else
+      @response.body
+    end
   end
 end
