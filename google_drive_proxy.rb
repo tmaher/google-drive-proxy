@@ -7,7 +7,6 @@ class GoogleDriveProxy < Sinatra::Base
   helpers Sinatra::Streaming
 
   set :root, File.dirname(__FILE__)
-  set :sessions, true
 
   get '/' do
     'howdy there'
