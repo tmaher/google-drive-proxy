@@ -1,5 +1,5 @@
 require 'sinatra/base'
-#require 'sinatra/streaming'
+require 'sinatra/streaming'
 require 'drive_proxy'
 
 # hello, world

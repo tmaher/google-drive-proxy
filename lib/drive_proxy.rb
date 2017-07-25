@@ -33,11 +33,15 @@ class DriveProxy
   def data
     if csrf?
       large_url = "#{small_download_url}&confirm=#{csrf_token}"
+      resp = head(large_url, follow_redirects: false)
+      puts "code: #{resp.code}"
+      puts "headers: #{resp.headers}"
       puts "large url #{large_url}"
+      codes = {}
       get(large_url, follow_redirects: true, stream_body: true) do |frag|
         @io.write frag
       end
-
+      puts "codes: #{codes}"
     else
       @io << @response.body
     end
