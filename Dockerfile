@@ -12,4 +12,4 @@ RUN ./script/bootstrap
 
 EXPOSE 5000
 USER 65535:65535
-CMD ["bundle", "exec", "unicorn", "-c", "config/unicorn.rb"]
+CMD ["./bin/unicorn", "-c", "config/unicorn.rb"]
