@@ -2,11 +2,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.8.0)
+    ffi (1.9.18)
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
     httparty_with_cookies (0.2.2)
       httparty
     kgio (2.11.0)
+    listen (3.1.5)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     mustermann (1.0.0)
@@ -16,6 +21,12 @@ GEM
     rack-protection (2.0.0)
       rack
     raindrops (0.18.0)
+    rb-fsevent (0.10.2)
+    rb-inotify (0.9.10)
+      ffi (>= 0.5.0, < 2)
+    rerun (0.11.0)
+      listen (~> 3.0)
+    ruby_dep (1.5.0)
     sinatra (2.0.0)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -39,6 +50,7 @@ PLATFORMS
 DEPENDENCIES
   httparty_with_cookies
   rack-handlers
+  rerun
   sinatra
   sinatra-contrib
   unicorn
