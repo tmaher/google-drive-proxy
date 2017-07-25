@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export BUNDLE_LOCAL="--local"
+if [ "$(uname -s)" = "Darwin" ]; then
+  brew update >/dev/null
+  brew bundle check >/dev/null || brew bundle
+
+  brew bootstrap-rbenv-ruby
+  export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
+  export BUNDLE_LOCAL=""
+fi
+
+echo "==> Installing gem dependencies…"
+bundle install --binstubs bin --path vendor/gems --standalone ${BUNDLE_LOCAL}
