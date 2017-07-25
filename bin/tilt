@@ -11,4 +11,4 @@ path = Pathname.new(__FILE__)
 $:.unshift File.expand_path "../../vendor/gems", path.realpath
 
 require "bundler/setup"
-load File.expand_path "../../vendor/gems/ruby/2.3.0/gems/tilt-2.0.7/bin/tilt", path.realpath
+load File.expand_path "../../vendor/gems/ruby/2.3.0/gems/tilt-2.0.8/bin/tilt", path.realpath
