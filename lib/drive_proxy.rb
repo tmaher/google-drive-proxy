@@ -20,16 +20,8 @@ class DriveProxy
   def chase_redirects(url = confirmed_url)
     while url
       resp = head(url, follow_redirects: false)
-      #puts "HEAD #{url}, code #{resp.code}"
-      puts "code: #{resp.code}, class #{resp.code.class}, headers #{resp.headers['location']}"
-      break if resp.code < 300 || resp.code >= 500
-      return url if resp.code < 300
-      url = if resp.code >= 300 && resp.code < 400
-        resp.headers['location']
-      else
-        nil
-      end
-      #url = resp.code >= 300 && resp.code < 400 ? resp.headers['location'] : nil
+      break unless resp.headers['location']
+      url = resp.headers['location']
     end
     url
   end
@@ -56,21 +48,6 @@ class DriveProxy
   def render_target
     get(@target_url, follow_redirects: false, stream_body: true) do |frag|
       @io.write frag
-    end
-  end
-
-  def xxx
-    if csrf?
-      large_url = "#{small_download_url}&confirm=#{@token}"
-      #resp = head(large_url, follow_redirects: false)
-      #puts "code: #{resp.code}"
-      #puts "headers: #{resp.headers}"
-      #puts "large url #{large_url}"
-      get(large_url, follow_redirects: true, stream_body: true) do |frag|
-        @io.write frag
-      end
-    else
-      @io << @response.body
     end
   end
 end
