@@ -10,24 +10,38 @@ class DriveProxy
     "/uc?export=download&id=#{@id}"
   end
 
-  def initialize(object_id)
+  def initialize(object_id, io: nil)
     @id = object_id
-    @response |= get small_download_url, follow_redirects: true
+    @io = io
+    @response = get small_download_url, follow_redirects: true
+    @token = csrf_token
   end
 
   def csrf?
-    !cookies.nil?
+    !@token.nil?
   end
 
   def csrf_token
-    return nil unless csrf?
-    cookies.each { |k,v| return v if k.start_with?('download_warning') }
+    return nil if cookies.nil?
+    @token ||= begin
+      tok = nil
+      cookies.each { |k,v| tok = v if k.start_with?('download_warning') }
+      tok
+    end
   end
 
   def data
-    return @response.body unless csrf?
+    if csrf?
+      large_url = "#{small_download_url}&confirm=#{csrf_token}"
+      puts "large url #{large_url}"
+      get(large_url, follow_redirects: true, stream_body: true) do |frag|
+        @io.write frag
+      end
+
+    else
+      @io << @response.body
+    end
 
     #"OVER LIMIT - NOT IMPLEMENTED - cookies #{cookies}"
-    csrf_token
   end
 end

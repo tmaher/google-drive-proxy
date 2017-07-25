@@ -1,8 +1,11 @@
 require 'sinatra/base'
+#require 'sinatra/streaming'
 require 'drive_proxy'
 
 # hello, world
 class GoogleDriveProxy < Sinatra::Base
+  helpers Sinatra::Streaming
+
   set :root, File.dirname(__FILE__)
   set :sessions, true
 
@@ -21,5 +24,12 @@ class GoogleDriveProxy < Sinatra::Base
     #proxy.download_url
     #resp = HTTParty.get("#{base_url}&id=#{params[:id]}")
     #{}"foo has ID thinger #{params[:id]}, resp #{resp}\n"
+  end
+
+  get '/gd/:id' do
+    content_type 'application/octet-stream'
+    stream do |out|
+      DriveProxy.new(params[:id], io: out).data
+    end
   end
 end
