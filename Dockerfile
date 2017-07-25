@@ -9,4 +9,5 @@ EXPOSE 5000
 WORKDIR /opt/sinatra
 RUN git pull && bundle install
 
+USER 65535:65535
 CMD ["bundle", "exec", "unicorn", "-c", "config/unicorn.rb"]
