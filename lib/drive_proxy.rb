@@ -25,10 +25,9 @@ class DriveProxy
   end
 
   def data
-    if csrf?
-      "OVER LIMIT - NOT IMPLEMENTED - cookies #{cookies}"
-    else
-      @response.body
-    end
+    return @response.body unless csrf?
+
+    #"OVER LIMIT - NOT IMPLEMENTED - cookies #{cookies}"
+    csrf_token
   end
 end
