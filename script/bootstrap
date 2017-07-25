@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BUNDLE_LOCAL="--local"
+export BUNDLE_LOCAL="--local --deployment"
 if [ "$(uname -s)" = "Darwin" ]; then
   brew update >/dev/null
   brew bundle check >/dev/null || brew bundle
