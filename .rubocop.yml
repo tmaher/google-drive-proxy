@@ -1,0 +1,127 @@
+inherit_gem:
+  rubocop-github:
+    - config/default.yml
+    - config/rails.yml
+
+AllCops:
+  TargetRubyVersion: 2.4
+  DisabledByDefault: false
+
+Layout/EmptyLines:
+  Enabled: false
+Layout/IndentHeredoc:
+  Enabled: false
+Layout/InitialIndentation:
+  Enabled: true
+Layout/LeadingCommentSpace:
+  Enabled: false
+Layout/SpaceAfterComma:
+  Enabled: false
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: false
+Layout/SpaceAroundOperators:
+  Enabled: false
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+Layout/SpaceInsideBrackets:
+  Enabled: false
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+Layout/SpaceInsideParens:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Performance/Casecmp:
+  Enabled: false
+
+Rails/Blank:
+  Enabled: false
+Rails/FilePath:
+  Enabled: false
+Rails/Present:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+Style/EmptyLiteral:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/HashSyntax:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: false
+Style/MethodDefParentheses:
+  Enabled: false
+Style/MultipleComparison:
+  Enabled: false
+Style/Next:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: false
+Style/PerlBackrefs:
+  Enabled: false
+Style/RaiseArgs:
+  EnforcedStyle: compact
+Style/RedundantReturn:
+  Enabled: false
+Style/RegexpLiteral:
+  Enabled: false
+Style/SafeNavigation:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+Style/TrailingCommaInLiteral:
+  Enabled: false
+Style/WordArray:
+  Enabled: false
+Style/YodaCondition:
+  Enabled: false
+
+# **DO NOT DISABLE**
+Layout/InitialIndentation:
+  Enabled: true
+
+Lint/Debugger:
+  Enabled: true
+Lint/FormatParameterMismatch:
+  Enabled: true
+Lint/LiteralInInterpolation:
+  Enabled: true
+
+Performance/DoubleStartEndWith:
+  Enabled: true
+
+Style/For:
+  Enabled: true
+Style/LambdaCall:
+  Enabled: true
+Style/MultilineIfThen:
+  Enabled: true
+Style/OneLineConditional:
+  Enabled: true

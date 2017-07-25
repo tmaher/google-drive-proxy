@@ -1,7 +1,8 @@
 source 'https://rubygems.org/'
 ruby '~>2.4.1'
 
-gem "sinatra"
-#gem "thin"
-gem "unicorn"
+gem "httparty_with_cookies"
 gem "rack-handlers"
+gem "rerun"
+gem "sinatra"
+gem "unicorn"

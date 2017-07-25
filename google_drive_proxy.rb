@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'drive_proxy'
 
 # hello, world
 class GoogleDriveProxy < Sinatra::Base
@@ -11,5 +12,13 @@ class GoogleDriveProxy < Sinatra::Base
 
   get '/foo' do
     'It is foo'
+  end
+
+  get '/foo/:id' do
+    proxy = DriveProxy.new(params[:id])
+    "cookies: #{proxy.some_cookies}"
+    #proxy.download_url
+    #resp = HTTParty.get("#{base_url}&id=#{params[:id]}")
+    #{}"foo has ID thinger #{params[:id]}, resp #{resp}\n"
   end
 end
